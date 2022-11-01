@@ -23,6 +23,17 @@
 
 //header.style.borderBottom="solid 3px #000"
 
-console.log(document.getElementById('items'))
-items.style.fontWeight="bold"
-items.style.color="green"
+//console.log(document.getElementById('items'))
+//items.style.fontWeight="bold"
+//items.style.color="green"
+
+
+var items=document.getElementsByClassName('list-group-item')
+console.log(items)
+console.log(items[3])
+items[2].style.backgroundColor="green"
+items[2].style.fontWeight="bold"
+for(var i=0;i<items.length;i++){
+    items[i].style.fontWeight="bold"
+}
+
