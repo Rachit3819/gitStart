@@ -68,14 +68,14 @@
 
 
 //QuerySlectorAll
-var titles = document.querySelectorAll('.title')
-console.log(titles)
+// var titles = document.querySelectorAll('.title')
+// console.log(titles)
 
-var odd=document.querySelectorAll("li:nth-child(odd)")
+// var odd=document.querySelectorAll("li:nth-child(odd)")
 
-for (var i=0;i<odd.length;i++){
-    odd[i].style.backgroundColor='green'
-}
-var li=document.querySelectorAll("li")
-console.log(li[1])
-li[1].style.color="green"
+// for (var i=0;i<odd.length;i++){
+//     odd[i].style.backgroundColor='green'
+// }
+// var li=document.querySelectorAll("li")
+// console.log(li[1])
+// li[1].style.color="green"
