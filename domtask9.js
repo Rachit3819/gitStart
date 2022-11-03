@@ -2,8 +2,7 @@ var form=document.getElementById('addForm')
 var itemList=document.getElementById('items')
 var filter = document.getElementById('filter');
 form.addEventListener('submit',addItem)
-filter.addEventListener('keyup', filterItems);
-//itemList.addEventListener('click',removeItem)
+filter.addEventListener("keyup",filterItems)
 
 function addItem(e){
     e.preventDefault();
@@ -19,34 +18,16 @@ function addItem(e){
     li.appendChild(document.createTextNode(newItem))
     li.appendChild(document.createTextNode(" "+ description))
 
-    // var deletebtn=document.createElement("button")
-    // var editbtn=document.createElement("button")
-    // editbtn.className="btn btn-danger btn-sm float-right"
-    // editbtn.appendChild(document.createTextNode('edit'))
+    var deletebtn=document.createElement("button")
 
+    deletebtn.className="btn btn-danger btn-sm float-right delete"
+    deletebtn.appendChild(document.createTextNode('X'))
 
-    // deletebtn.className="btn btn-danger btn-sm float-right delete"
-    // deletebtn.appendChild(document.createTextNode('del'))
-
-    // li.appendChild(deletebtn)
-    // li.appendChild(editbtn)
+    li.appendChild(deletebtn)
     
 
     itemList.appendChild(li)
-    
 }
-// }
-
-// function removeItem(e){
-//     if(e.target.classList.contains('delete')){
-//         if(confirm(alert('Are you sure'))){
-//             var li=e.target.parentElement;
-//             itemList.removeChild(li);
-//         }
-//     }
-
-// }
-
 
 function filterItems(e){
     // convert text to lowercase
@@ -56,7 +37,8 @@ function filterItems(e){
     // Convert to an array
     Array.from(items).forEach(function(item){
       var itemName = item.firstChild.textContent;
-      if(itemName.toLowerCase().indexOf(text) != -1){
+      var description = item.childNodes[1].textContent;
+      if(itemName.toLowerCase().indexOf(text) != -1 || description.toLocaleLowerCase().indexOf(text) !=-1) {
         item.style.display = 'block';
       } else {
         item.style.display = 'none';
