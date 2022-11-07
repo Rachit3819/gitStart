@@ -12,16 +12,12 @@
             function saveToLocalStorage (event){
                 event.preventDefault();
                 const name=event.target.userName.value
-               
                 const emailId=event.target.emailId.value
-                localStorage.setItem('name',name)
-             
-                localStorage.setItem('emailId',emailId)
                 const obj={
                     name,
                     emailId,
                 }
-                localStorage.setItem('userDetails',JSON.stringify(obj))              
+                localStorage.setItem('UserName',JSON.stringify(obj))             
             }
         </script>
     </body>
