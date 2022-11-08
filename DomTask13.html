@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <style>
+            h1{
+                text-align: center;
+                background-color: black;
+                color: aliceblue;
+            }
+            form{
+                text-align: center;
+                background-color: cornsilk;
+            }
+        </style>
+    <body>
+        <h1>Appointment Booking App</h1>
+        <form onsubmit="saveToLocalStorage (event)">
+            <label>Name</label>
+            <input id="username" type="text" name="userName" required/><br><br>
+            <label>EmailId</label>
+            <input id="email" type="email" name="emailId" required/><br><br>
+            <button>Submit</button>
+            <ul id="List Of User Details"></ul>
+
+        </form>
+        <script>
+            function saveToLocalStorage (event){
+                event.preventDefault();
+                const name=event.target.userName.value
+                const emailId=event.target.emailId.value
+                const obj={
+                    name,
+                    emailId,
+                }
+                localStorage.setItem(obj.emailId,JSON.stringify(obj))
+                showNewUserOnScreen(obj)             
+            }
+            window.addEventListener("DOMContentLoaded", ()=>{
+                const localStorageObj=localStorage
+                const localStorageKeys=Object.keys(localStorageObj)
+                for(var i=0;i<localStorageKeys.length;i++){
+                    const keys=localStorageKeys[i]
+                    const userDetailString=localStorageObj[keys]
+                    const userDetailObj=JSON.parse(userDetailString)
+                    showNewUserOnScreen(userDetailObj)
+                }
+            })
+            function showNewUserOnScreen(user){
+                const parentNode=document.getElementById('List Of User Details')
+                const childHTML=`<li id=${user.emailId}> ${user.name} - ${user.emailId}
+                                    <button onClick=deleteUser('${user.emailId}')> Delete User </button>
+                                    <button onClick=editUserDetails('${user.emailId}','${user.name}')> Edit User </button>
+                                    </li>`
+                parentNode.innerHTML=parentNode.innerHTML + childHTML
+            }
+            function deleteUser(email){
+                console.log(email)
+                localStorage.removeItem(email)
+                removeFromScreen(email)
+            }
+            function removeFromScreen(email){
+                const parentNode=document.getElementById('List Of User Details')
+                const childNodeToBeDeleted=document.getElementById(email)
+                parentNode.removeChild(childNodeToBeDeleted)
+            }
+            function editUserDetails(emailId,name){
+                document.getElementById('email').value=emailId
+                document.getElementById('username').value=name
+                deleteUser(emailId)
+            }
+      
+        </script>
+    </body>
+</html>
